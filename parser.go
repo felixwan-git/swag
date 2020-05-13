@@ -1212,6 +1212,17 @@ func (parser *Parser) parseField(pkgName string, field *ast.Field) (*structField
 	// `json:"tag"` -> json:"tag"
 	structTag := reflect.StructTag(strings.Replace(field.Tag.Value, "`", "", -1))
 
+	if protobufTag := structTag.Get("protobuf"); protobufTag != "" {
+		return structField, nil
+	}
+
+	if structField.formatType == "protoimpl.MessageState" ||
+		structField.formatType == "protoimpl.SizeCache" ||
+		structField.formatType == "protoimpl.UnknownFields" {
+		structField.name = ""
+		return structField, nil
+	}
+
 	if ignoreTag := structTag.Get("swaggerignore"); ignoreTag == "true" {
 		structField.name = ""
 		return structField, nil
