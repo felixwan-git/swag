@@ -1,4 +1,4 @@
-module github.com/felixwan-git/swag
+module github.com/swaggo/swag
 
 require (
 	github.com/KyleBanks/depth v1.2.1
