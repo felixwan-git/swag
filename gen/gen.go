@@ -13,7 +13,7 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/felixwan-git/swag"
+	"github.com/swaggo/swag"
 	"github.com/ghodss/yaml"
 	"github.com/go-openapi/spec"
 )
